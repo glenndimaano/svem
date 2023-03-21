@@ -19,7 +19,7 @@ const shopify = shopifyApp({
         apiKey: process.env.SHOPIFY_API_KEY,
         apiSecretKey: process.env.SHOPIFY_SECRET_KEY,
         scopes: ["read_products,write_products"],
-        hostName: process.env.SHOPIFY_APP_URL.replace(/https:\/\//, ""),
+        hostName: process.env.SHOPIFY_APP_URL,
         apiVersion: LATEST_API_VERSION,
         restResources,
         billing: undefined, // or replace with billingConfig above to enable example billing

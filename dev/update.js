@@ -122,6 +122,6 @@ await selectOrg(accessToken);
 console.log("--> Fetching App Data");
 const app = await getApp(process.env.SHOPIFY_API_KEY, accessToken);
 console.log("--> Updating URLs");
-await updateDashboardURLs(app.apiKey, process.env.SHOPIFY_APP_URL);
+await updateDashboardURLs(app.apiKey, `https://${process.env.SHOPIFY_APP_URL}`);
 console.log("--> URLs updated. Please update GDPR and Proxy routes manually");
 console.log("--> Done");
