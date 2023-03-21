@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
+import { terser } from 'rollup-plugin-terser';
 
 const proxyOptions = (port) => {
   return {
@@ -27,7 +28,26 @@ export default defineConfig(({ command, mode }) => {
         // "^/(\\?.*)?$": proxyOptions(env.PORT),
         "^/api(/|(\\?.*)?$)": proxyOptions(env.PORT)
       },
-
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: [
+              '@shopify/app-bridge',
+              '@shopify/app-bridge-react',
+              '@shopify/polaris',
+              'react',
+              'react-dom',
+              'react-query',
+              'react-router-dom'
+            ]
+          }
+        },
+        plugins: [
+          terser(), // or closureCompiler()
+        ],
+      },
     }
   }
 });
